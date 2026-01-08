@@ -1,7 +1,7 @@
 from google import genai
 from django.conf import settings
 
-client = genai.Client(api_key="AIzaSyCNn4uJ0a4uTU0afDozVPoi6aajygxsqyM")
+client = genai.Client(api_key=settings.GEMINI_API_KEY)
 
 GEMINI_MODELS = [
     "models/gemini-2.5-flash",         
@@ -15,9 +15,7 @@ def summarize(data:dict):
     This is task title {data.get("title")} , 
     Description {data.get("description")}
     Generate a brief, one-sentence summary of the task.
-    Suggest 3 to 5 potential sub-tasks.
-    Categorize the task into one of several predefined categories (e.g., "Bug Fix", "Feature", "DevOps", "Documentation").
-
+    
     """
     for i in range(0,len(GEMINI_MODELS)):
         try:
